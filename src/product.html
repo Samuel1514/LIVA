@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feature Sidebar with Avatar Interaction</title>
+    <link rel="stylesheet" href="product.css">
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <h2>Features</h2>
+            <ul>
+                <li onclick="showFeature('avatarInteraction')">Avatar Interaction</li>
+                <li onclick="showFeature('mealReminder')">Meal Reminder</li>
+                <li onclick="showFeature('medicineReminder')">Medicine Reminder</li>
+            </ul>
+        </aside>
+        
+        <main class="content">
+            <h2 id="featureTitle">Welcome</h2>
+            <div id="featureDescription">
+                <p>Select a feature from the left to explore its details.</p>
+            </div>
+        </main>
+    </div>
+    <script src="product.js"></script>
+</body>
+</html>
