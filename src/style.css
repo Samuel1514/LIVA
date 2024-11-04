@@ -8,7 +8,7 @@
 body {
     font-family: Arial, sans-serif;
 }
-
+ 
 /* Navbar Styling */
 .navbar {
     display: flex;
@@ -105,7 +105,7 @@ body {
     background-image: url('https://plus.unsplash.com/premium_photo-1665203598344-f5129341013f?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8ZWxkZXJseSUyMHBob25lfGVufDB8fDB8fHww');
     background-size: cover;
     background-position: center;
-    height: 800px;
+    height: 525px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -531,3 +531,40 @@ color: #ffffff;
 
 
 
+.products {
+    padding: 20px;
+    background-color: #f9f9f9; /* Light background for contrast */
+}
+
+.products h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columns */
+    gap: 20px; /* Space between items */
+}
+
+.product-item {
+    background-color: #fff; /* White background for each item */
+    border: 1px solid #ddd; /* Light border */
+    border-radius: 8px; /* Rounded corners */
+    text-align: center; /* Centered text */
+    padding: 10px; /* Padding around content */
+}
+
+.product-item img {
+    max-width: 100%; /* Responsive image */
+    border-radius: 8px 8px 0 0; /* Rounded top corners */
+}
+
+.product-item h3 {
+    margin: 10px 0 5px; /* Spacing for title */
+}
+
+.product-item p {
+    color: #666; /* Darker text for description */
+    font-size: 0.9em; /* Slightly smaller font */
+}
