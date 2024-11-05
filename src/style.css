@@ -105,7 +105,7 @@ body {
     background-image: url('https://plus.unsplash.com/premium_photo-1665203598344-f5129341013f?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8ZWxkZXJseSUyMHBob25lfGVufDB8fDB8fHww');
     background-size: cover;
     background-position: center;
-    height: 525px;
+    height: 550px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -206,7 +206,7 @@ color: #ffffff;
 
 /* CSS for Secondary Banner */
 .secondary-banner {
-    background-image: url('https://images.unsplash.com/photo-1512436991641-6745cdb1723f?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&w=1080&q=80'); /* Replace with your image URL */
+    background-image: url('https://images.unsplash.com/photo-1513159446162-54eb8bdaa79b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); /* Replace with your image URL */
     background-size: cover;
     background-position: center;
     width: 100%;
@@ -568,3 +568,160 @@ color: #ffffff;
     color: #666; /* Darker text for description */
     font-size: 0.9em; /* Slightly smaller font */
 }
+
+
+
+
+/* Navbar Contact Dropdown */
+.contact-menu {
+    position: relative;
+}
+
+.contact-menu .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    padding: 10px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    width: 200px;
+}
+
+.contact-menu:hover .dropdown-menu {
+    display: block;
+}
+
+.contact-menu .dropdown-menu li {
+    padding: 5px 10px;
+    color: #333;
+}
+
+
+/* General Reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Product Grid Styling */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columns per row */
+    gap: 20px; /* Space between product items */
+    padding: 20px;
+}
+
+.product-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f9f9f9; /* Light background for contrast */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.product-item img {
+    width: 100%; /* Full width of the product item */
+    max-height: 150px; /* Constrain height */
+    object-fit: cover; /* Crop image to fit without distortion */
+    border-radius: 4px; /* Optional: rounded corners */
+}
+
+.product-item h3 {
+    font-size: 1.2em;
+    margin: 15px 0 10px;
+    color: #333;
+}
+
+.product-item p {
+    font-size: 0.9em;
+    color: #666;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns per row for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .product-grid {
+        grid-template-columns: 1fr; /* 1 column per row for very small screens */
+    }
+}
+
+
+
+/* Navbar styles */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    padding: 10px 20px;
+}
+
+.menu {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+}
+
+.menu li {
+    position: relative;
+}
+
+.menu li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px;
+}
+
+.menu li a:hover {
+    color: #ddd;
+}
+
+/* Dropdown menu styles */
+.dropdown-menu {
+    display: none; /* Hide by default */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #444;
+    padding: 10px 0;
+    list-style: none;
+    min-width: 150px;
+    border-radius: 4px;
+}
+
+.dropdown-menu li {
+    padding: 5px 15px;
+}
+
+.dropdown-menu li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.dropdown-menu li:hover {
+    background-color: #555;
+}
+
+/* Show dropdown on hover */
+.services-menu:hover .dropdown-menu,
+.contact-menu:hover .dropdown-menu {
+    display: block;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
