@@ -72,6 +72,21 @@ function showFeature(feature) {
             <button onclick="addMedicine()">Add Another Medicine</button>
             <button onclick="saveMedicines()">Save Changes</button>
         `;
+    } else if (feature === 'userProfile') {
+        featureTitle.innerText = 'User Profile';
+        featureDescription.innerHTML = `
+            <p>Here are your health details. Keep them updated to get the best out of your health reminders and recommendations.</p>
+            <div id="profileContainer">
+                <label>Age: <input type="number" id="userAge" placeholder="e.g., 65"></label><br>
+                <label>Blood Group: <input type="text" id="bloodGroup" placeholder="e.g., B+"></label><br>
+                <label>BMI: <input type="number" id="bmi" placeholder="e.g., 22.5" step="0.1"></label><br>
+                <label>Weight (kg): <input type="number" id="weight" placeholder="e.g., 70"></label><br>
+                <label>Height (cm): <input type="number" id="height" placeholder="e.g., 170"></label><br>
+                <label>Allergies: <textarea id="allergies" placeholder="e.g., penicillin, peanuts"></textarea></label><br>
+                <label>Medical Conditions: <textarea id="conditions" placeholder="e.g., diabetes, hypertension"></textarea></label><br>
+            </div>
+            <button onclick="saveProfile()">Save Profile</button>
+        `;
     }
 }
 
@@ -122,4 +137,16 @@ function addMedicine() {
 
 function saveMedicines() {
     alert("Medicines have been saved successfully!");
+}
+
+function saveProfile() {
+    const age = document.getElementById('userAge').value;
+    const bloodGroup = document.getElementById('bloodGroup').value;
+    const bmi = document.getElementById('bmi').value;
+    const weight = document.getElementById('weight').value;
+    const height = document.getElementById('height').value;
+    const allergies = document.getElementById('allergies').value;
+    const conditions = document.getElementById('conditions').value;
+    
+    alert(`Profile saved successfully!\nAge: ${age}\nBlood Group: ${bloodGroup}\nBMI: ${bmi}\nWeight: ${weight}\nHeight: ${height}\nAllergies: ${allergies}\nMedical Conditions: ${conditions}`);
 }
