@@ -24,8 +24,8 @@ function showFeature(feature) {
             </div>
         `;
         document.getElementById('avatarContainer').style.display = 'block';
-    } else if (feature === 'mealReminder') {
-        featureTitle.innerText = 'Meal Reminder';
+    } else if (feature === 'Reminder') {
+        featureTitle.innerText = ' Reminder';
         featureDescription.innerHTML = `
             <p>Hi there! Let's make sure you're getting the nourishment you need. I’ll help you remember your meals throughout the day.</p>
             <div id="mealContainer">
@@ -51,27 +51,7 @@ function showFeature(feature) {
             <button onclick="addMeal()">Add Another Meal</button>
             <button onclick="saveMeals()">Save Changes</button>
         `;
-    } else if (feature === 'medicineReminder') {
-        featureTitle.innerText = 'Medicine Reminder';
-        featureDescription.innerHTML = `
-            <p>Your health is important to me. I’ll gently remind you when it’s time to take your medication to help you stay on track.</p>
-            <div id="medicineContainer">
-                <div class="meal" id="medicine1">
-                    <h3>Medicine 1</h3>
-                    <label>Time: <input type="time"></label><br>
-                    <label>Additional Notes:</label><br>
-                    <textarea placeholder="e.g., take with water"></textarea>
-                </div>
-                <div class="meal" id="medicine2">
-                    <h3>Medicine 2</h3>
-                    <label>Time: <input type="time"></label><br>
-                    <label>Additional Notes:</label><br>
-                    <textarea placeholder="e.g., after meal"></textarea>
-                </div>
-            </div>
-            <button onclick="addMedicine()">Add Another Medicine</button>
-            <button onclick="saveMedicines()">Save Changes</button>
-        `;
+    } 
     } else if (feature === 'userProfile') {
         featureTitle.innerText = 'User Profile';
         featureDescription.innerHTML = `
