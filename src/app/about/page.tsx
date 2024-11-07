@@ -46,7 +46,7 @@ export default function AboutPage() {
           </div>
         </div>
 
-        <h2>Join Our Community</h2>
+        <h2>Join  Community</h2>
         <p>By becoming a part of LIVA, you join a community that values independence, health, and happiness for the elderly. Stay informed about the latest features, updates, and tips for a better lifestyle by subscribing to our newsletter.</p>
 
         <h3>Get Exclusive Updates</h3>
