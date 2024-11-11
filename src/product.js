@@ -1,12 +1,11 @@
-let mealCount = 3;
+let reminderCount = 3;
 
 function showFeature(feature) {
     const featureTitle = document.getElementById('featureTitle');
     const featureDescription = document.getElementById('featureDescription');
     const avatarContainer = document.getElementById('avatarContainer');
     const video = document.getElementById('introVideo');
-
-    // Clear the avatar container
+    
     if (avatarContainer) avatarContainer.remove();
 
     if (feature === 'avatarInteraction') {
@@ -24,109 +23,195 @@ function showFeature(feature) {
             </div>
         `;
         document.getElementById('avatarContainer').style.display = 'block';
-    } else if (feature === 'Reminder') {
-        featureTitle.innerText = ' Reminder';
+    } else if (feature === 'reminder') {
+        featureTitle.innerText = 'Reminder';
         featureDescription.innerHTML = `
-            <p>Hi there! Let's make sure you're getting the nourishment you need. I’ll help you remember your meals throughout the day.</p>
-            <div id="mealContainer">
-                <div class="meal" id="meal1">
-                    <h3>Meal 1</h3>
-                    <label>Time: <input type="time"></label><br>
-                    <label>Additional Notes:</label><br>
-                    <textarea placeholder="e.g., light breakfast, fruits"></textarea>
-                </div>
-                <div class="meal" id="meal2">
-                    <h3>Meal 2</h3>
-                    <label>Time: <input type="time"></label><br>
-                    <label>Additional Notes:</label><br>
-                    <textarea placeholder="e.g., balanced lunch, protein"></textarea>
-                </div>
-                <div class="meal" id="meal3">
-                    <h3>Meal 3</h3>
-                    <label>Time: <input type="time"></label><br>
-                    <label>Additional Notes:</label><br>
-                    <textarea placeholder="e.g., light dinner, salad"></textarea>
-                </div>
+            <p>Stay on track with meals and medicines!</p>
+            <div id="reminderContainer">
+                ${generateReminders()}
             </div>
-            <button onclick="addMeal()">Add Another Meal</button>
-            <button onclick="saveMeals()">Save Changes</button>
+            <button onclick="addReminder()">Add Another Reminder</button>
+            <button onclick="saveReminders()">Save Changes</button>
         `;
-    } 
-    } else if (feature === 'userProfile') {
-        featureTitle.innerText = 'User Profile';
+    } else if (feature === 'medicalAssistance') {
+        featureTitle.innerText = 'Symptom Checker & Medicine Recommendation';
         featureDescription.innerHTML = `
-            <p>Here are your health details. Keep them updated to get the best out of your health reminders and recommendations.</p>
-            <div id="profileContainer">
-                <label>Age: <input type="number" id="userAge" placeholder="e.g., 65"></label><br>
-                <label>Blood Group: <input type="text" id="bloodGroup" placeholder="e.g., B+"></label><br>
-                <label>BMI: <input type="number" id="bmi" placeholder="e.g., 22.5" step="0.1"></label><br>
-                <label>Weight (kg): <input type="number" id="weight" placeholder="e.g., 70"></label><br>
-                <label>Height (cm): <input type="number" id="height" placeholder="e.g., 170"></label><br>
-                <label>Allergies: <textarea id="allergies" placeholder="e.g., penicillin, peanuts"></textarea></label><br>
-                <label>Medical Conditions: <textarea id="conditions" placeholder="e.g., diabetes, hypertension"></textarea></label><br>
+            <p>Describe your symptoms, and I’ll recommend potential conditions and suitable medicines.</p>
+            <div id="symptomChecker">
+                <label for="symptomsInput">Enter Symptoms:</label><br>
+                <textarea id="symptomsInput" placeholder="e.g., headache, fever, cough"></textarea><br>
+                <button onclick="checkSymptoms()">Check Symptoms</button>
             </div>
-            <button onclick="saveProfile()">Save Profile</button>
+            <div id="symptomResult" style="margin-top: 20px; display: none;">
+                <h3>Possible Conditions:</h3>
+                <ul id="conditionsList"></ul>
+                <h3>Recommended Medicines:</h3>
+                <ul id="medicineList"></ul>
+            </div>
         `;
+    } else if (feature === 'exerciseSuggestion') {
+        featureTitle.innerText = 'Exercise Suggestion';
+        featureDescription.innerHTML = `
+            <p>Welcome! Choose your fitness level to see the exercises tailored to you.</p>
+            <label for="fitnessLevel">Select Level:</label>
+            <select id="fitnessLevel" onchange="showExercises()">
+                <option value="beginner">Beginner</option>
+                <option value="intermediate">Intermediate</option>
+                <option value="pro">Pro</option>
+            </select>
+            <div id="exerciseGrid" style="display: none; margin-top: 20px;"></div>
+        `;
+    } else {
+        featureTitle.innerText = 'Feature Coming Soon';
+        featureDescription.innerHTML = `<p>This feature is under development. Please check back later!</p>`;
     }
 }
 
-function addMeal() {
-    mealCount++;
-    const mealContainer = document.getElementById('mealContainer');
-    const newMeal = document.createElement('div');
-    newMeal.className = 'meal';
-    newMeal.id = `meal${mealCount}`;
-    newMeal.innerHTML = `
-        <h3>Meal ${mealCount}</h3>
+function generateReminders() {
+    let reminders = '';
+    for (let i = 1; i <= reminderCount; i++) {
+        reminders += `
+            <div class="meal" id="reminder${i}">
+                <h3>Reminder ${i}</h3>
+                <label>Time: <input type="time"></label><br>
+                <label>Type: 
+                    <select>
+                        <option>Meal</option>
+                        <option>Medicine</option>
+                    </select>
+                </label><br>
+                <label>Additional Notes:</label><br>
+                <textarea placeholder="e.g., light breakfast or medicine instructions"></textarea>
+            </div>
+        `;
+    }
+    return reminders;
+}
+
+function addReminder() {
+    reminderCount++;
+    const reminderContainer = document.getElementById('reminderContainer');
+    const newReminder = document.createElement('div');
+    newReminder.className = 'meal';
+    newReminder.id = `reminder${reminderCount}`;
+    newReminder.innerHTML = `
+        <h3>Reminder ${reminderCount}</h3>
         <label>Time: <input type="time"></label><br>
+        <label>Type: 
+            <select>
+                <option>Meal</option>
+                <option>Medicine</option>
+            </select>
+        </label><br>
         <label>Additional Notes:</label><br>
-        <textarea placeholder="e.g., evening snack"></textarea>
+        <textarea placeholder="e.g., evening snack or take with water"></textarea>
     `;
-    mealContainer.appendChild(newMeal);
+    reminderContainer.appendChild(newReminder);
+}
+
+function saveReminders() {
+    alert("Reminders saved successfully!");
 }
 
 function sendMessage() {
     const userMessage = document.getElementById('userMessage').value;
-    alert(`You: ${userMessage}\nLiva: Thank you for sharing!`);
+    alert(`You: ${userMessage}\nLiva: Thanks for sharing!`);
 }
 
-function playVideo() {
-    const video = document.getElementById('introVideo');
-    video.style.display = 'block';
-    video.play();
+function checkSymptoms() {
+    const symptoms = document.getElementById('symptomsInput').value.toLowerCase();
+    const conditionsList = document.getElementById('conditionsList');
+    const medicineList = document.getElementById('medicineList');
+    const symptomResult = document.getElementById('symptomResult');
+
+    const conditions = {
+        migraine: {
+            symptoms: ['headache', 'nausea', 'sensitivity to light'],
+            medicines: ['Paracetamol', 'Ibuprofen']
+        },
+        flu: {
+            symptoms: ['fever', 'cough', 'body ache', 'fatigue'],
+            medicines: ['Antihistamines', 'Paracetamol']
+        },
+        diabetes: {
+            symptoms: ['frequent urination', 'excessive thirst', 'blurred vision'],
+            medicines: ['Metformin', 'Insulin']
+        },
+        hypertension: {
+            symptoms: ['high blood pressure', 'dizziness', 'chest pain'],
+            medicines: ['Amlodipine', 'Losartan']
+        },
+        anemia: {
+            symptoms: ['fatigue', 'pale skin', 'shortness of breath'],
+            medicines: ['Iron Supplements', 'Folic Acid']
+        }
+    };
+
+    conditionsList.innerHTML = '';
+    medicineList.innerHTML = '';
+    symptomResult.style.display = 'block';
+
+    let foundConditions = [];
+    for (const [condition, data] of Object.entries(conditions)) {
+        if (data.symptoms.some(symptom => symptoms.includes(symptom))) {
+            foundConditions.push(condition);
+            conditionsList.innerHTML += `<li>${condition.charAt(0).toUpperCase() + condition.slice(1)}</li>`;
+            data.medicines.forEach(medicine => {
+                medicineList.innerHTML += `<li>${medicine}</li>`;
+            });
+        }
+    }
+
+    if (foundConditions.length === 0) {
+        conditionsList.innerHTML = `<li>No matching conditions found. Please consult a doctor.</li>`;
+    }
 }
 
-function saveMeals() {
-    alert("Meals have been saved successfully!");
+function showExercises() {
+    const fitnessLevel = document.getElementById('fitnessLevel').value;
+    const exerciseGrid = document.getElementById('exerciseGrid');
+    const exercises = {
+        beginner: [
+            'Push-ups', 'Squats', 'Plank', 'Jumping Jacks', 'Lunges', 'Sit-ups'
+        ],
+        intermediate: [
+            'Burpees', 'Pull-ups', 'Mountain Climbers', 'Bicycle Crunches', 'Deadlifts', 'Dips'
+        ],
+        pro: [
+            'Handstand Push-ups', 'One-arm Push-ups', 'Pistol Squats', 'Muscle-ups', 'Front Lever', 'Planche'
+        ]
+    };
+
+    exerciseGrid.innerHTML = exercises[fitnessLevel]
+        .map(exercise => `<div class="exercise-item" onclick="showExerciseDetails('${exercise}')">${exercise}</div>`)
+        .join('');
+    exerciseGrid.style.display = 'grid';
+    exerciseGrid.style.gridTemplateColumns = 'repeat(3, 1fr)';
+    exerciseGrid.style.gap = '10px';
 }
 
-function addMedicine() {
-    const medicineContainer = document.getElementById('medicineContainer');
-    const newMedicine = document.createElement('div');
-    newMedicine.className = 'meal';
-    const medicineCount = medicineContainer.children.length + 1;
-    newMedicine.id = `medicine${medicineCount}`;
-    newMedicine.innerHTML = `
-        <h3>Medicine ${medicineCount}</h3>
-        <label>Time: <input type="time"></label><br>
-        <label>Additional Notes:</label><br>
-        <textarea placeholder="e.g., take with water"></textarea>
-    `;
-    medicineContainer.appendChild(newMedicine);
-}
+function showExerciseDetails(exercise) {
+    const exerciseDetails = {
+        'Push-ups': '1. Get into a plank position. 2. Lower your body. 3. Push up back to start.',
+        'Squats': '1. Stand straight. 2. Lower your hips. 3. Return to standing.',
+        'Plank': '1. Get into a push-up position. 2. Keep back straight. 3. Hold position.',
+        'Jumping Jacks': '1. Jump spreading legs. 2. Raise arms. 3. Return to start.',
+        'Lunges': '1. Step forward. 2. Lower hips. 3. Push back up.',
+        'Sit-ups': '1. Lie on your back. 2. Lift upper body. 3. Return slowly.',
+        'Burpees': '1. Start in standing. 2. Drop into a squat. 3. Jump back to plank, return, jump up.',
+        'Pull-ups': '1. Grab bar. 2. Pull up. 3. Lower back.',
+        'Mountain Climbers': '1. Get into plank. 2. Bring knee to chest. 3. Alternate legs.',
+        'Bicycle Crunches': '1. Lie back. 2. Lift knees. 3. Touch opposite elbow to knee.',
+        'Deadlifts': '1. Grab bar. 2. Lift by straightening hips. 3. Return.',
+        'Dips': '1. Support yourself. 2. Lower body. 3. Push back up.',
+        'Handstand Push-ups': '1. Kick up against wall. 2. Lower and press up.',
+        'One-arm Push-ups': '1. Feet wide. 2. Hand under shoulder. 3. Lower, push up.',
+        'Pistol Squats': '1. Extend leg. 2. Squat down. 3. Return.',
+        'Muscle-ups': '1. Pull-up. 2. Transition to dip. 3. Push-up.',
+        'Front Lever': '1. Grip bar. 2. Hold body straight. 3. Lift legs up.',
+        'Planche': '1. Lean forward. 2. Support weight on hands. 3. Extend body.'
+    };
 
-function saveMedicines() {
-    alert("Medicines have been saved successfully!");
-}
-
-function saveProfile() {
-    const age = document.getElementById('userAge').value;
-    const bloodGroup = document.getElementById('bloodGroup').value;
-    const bmi = document.getElementById('bmi').value;
-    const weight = document.getElementById('weight').value;
-    const height = document.getElementById('height').value;
-    const allergies = document.getElementById('allergies').value;
-    const conditions = document.getElementById('conditions').value;
-    
-    alert(`Profile saved successfully!\nAge: ${age}\nBlood Group: ${bloodGroup}\nBMI: ${bmi}\nWeight: ${weight}\nHeight: ${height}\nAllergies: ${allergies}\nMedical Conditions: ${conditions}`);
+    const details = exerciseDetails[exercise] || 'No details available for this exercise.';
+    alert(`Exercise Details for ${exercise}:\n\n${details}`);
 }
