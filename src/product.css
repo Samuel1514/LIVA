@@ -242,3 +242,26 @@ button:hover {
     background-color: #555;
 }
 
+.exercise-item {
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    transition: transform 0.2s;
+}
+
+.exercise-item:hover {
+    transform: scale(1.05);
+}
+
+.exercise-item img {
+    border-radius: 8px;
+}
+
+.exercise-item h3 {
+    margin-top: 10px;
+    font-size: 1.2em;
+    color: #333;
+}
+
