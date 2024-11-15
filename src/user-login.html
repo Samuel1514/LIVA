@@ -21,12 +21,12 @@
             </div>
             <button type="submit" class="login-button">Login</button>
             <div class="social-login">
-                <button class="google-button">
+                <button type="button" class="google-button">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Google_2015_logo.svg" 
-                         alt="Google Logo" style="width:20px; height:20px; margin-right:5px;">
+                        alt="Google Logo" style="width:20px; height:20px; margin-right:5px;">
                     Login with Google
                 </button>
-                <button class="facebook-button">
+                <button type="button" class="facebook-button">
                     <i class="fab fa-facebook-f"></i> Login with Facebook
                 </button>
             </div>
@@ -35,8 +35,9 @@
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
-        import { getAuth, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
+        import { getAuth, signInWithPopup, GoogleAuthProvider, FacebookAuthProvider } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
 
+        // Firebase configuration
         const firebaseConfig = {
             apiKey: "AIzaSyBxJlS35LSOe0h_v6Hzj4cOXhMAjRpr7oQ",
             authDomain: "login-liva-9266e.firebaseapp.com",
@@ -46,19 +47,35 @@
             appId: "1:756068659500:web:48e861a6c249ba95083c89"
         };
 
+        // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const auth = getAuth();
-        const provider = new GoogleAuthProvider();
 
+        // Google Login
+        const googleProvider = new GoogleAuthProvider();
         document.querySelector('.google-button').addEventListener('click', (e) => {
             e.preventDefault();
-            signInWithPopup(auth, provider)
+            signInWithPopup(auth, googleProvider)
                 .then((result) => {
-                   
+                    
                     window.location.href = 'product.html'; // Redirect to product.html
                 })
                 .catch((error) => {
-                    console.error('Login Failed:', error.message);
+                    console.error('Google Login Failed:', error.message);
+                });
+        });
+
+        // Facebook Login
+        const facebookProvider = new FacebookAuthProvider();
+        document.querySelector('.facebook-button').addEventListener('click', (e) => {
+            e.preventDefault();
+            signInWithPopup(auth, facebookProvider)
+                .then((result) => {
+                    
+                    window.location.href = 'product.html'; // Redirect to product.html
+                })
+                .catch((error) => {
+                    console.error('Facebook Login Failed:', error.message);
                 });
         });
     </script>
