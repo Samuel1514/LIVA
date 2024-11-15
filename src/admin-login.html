@@ -57,7 +57,7 @@
             e.preventDefault();
             signInWithPopup(auth, googleProvider)
                 .then((result) => {
-                    alert(`Welcome, ${result.user.displayName}`);
+                    
                     window.location.href = 'admin-page.html'; // Redirect to product.html
                 })
                 .catch((error) => {
@@ -71,7 +71,7 @@
             e.preventDefault();
             signInWithPopup(auth, facebookProvider)
                 .then((result) => {
-                    alert(`Welcome, ${result.user.displayName}`);
+                  
                     window.location.href = 'product.html'; // Redirect to product.html
                 })
                 .catch((error) => {
