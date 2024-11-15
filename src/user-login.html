@@ -54,7 +54,7 @@
             e.preventDefault();
             signInWithPopup(auth, provider)
                 .then((result) => {
-                    alert(`Welcome, ${result.user.displayName}`);
+                   
                     window.location.href = 'product.html'; // Redirect to product.html
                 })
                 .catch((error) => {
