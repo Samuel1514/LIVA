@@ -12,6 +12,7 @@ function showFeature(feature) {
                 <button onclick="performTask('Delete User')">Delete User</button>
             </div>
         `;
+        
     } else if (feature === 'viewReports') {
         featureTitle.innerText = 'View Reports';
         featureDescription.innerHTML = `
