@@ -11,17 +11,20 @@ function showFeature(feature) {
     if (feature === 'avatarInteraction') {
         featureTitle.innerText = 'Chat with Liva';
         featureDescription.innerHTML = `
-            <p>Liva, your caring digital companion, is here to listen, help, and keep you company just like family. 
-            Imagine having a friendly conversation with someone who knows and cares about you.</p>
-            <div class="avatar-container" id="avatarContainer">
-                <div class="avatar-display"></div>
-                <p>What would you like to share or ask today? Just type below, and I'll be here to chat!</p>
-                <div class="typing-bar">
-                    <input type="text" placeholder="Type your message here..." id="userMessage">
-                    <button onclick="sendMessage()">Send</button>
-                </div>
-            </div>
-        `;
+    <p>Liva, your caring digital companion, is here to listen, help, and keep you company just like family. 
+    Imagine having a friendly conversation with someone who knows and cares about you.</p>
+    <div class="avatar-container" id="avatarContainer">
+        <div class="avatar-display">
+            <img src="https://t3.ftcdn.net/jpg/06/17/13/26/360_F_617132669_YptvM7fIuczaUbYYpMe3VTLimwZwzlWf.jpg" alt="Avatar Loading">
+        </div>
+        <p>What would you like to share or ask today? Just type below, and I'll be here to chat!</p>
+        <div class="typing-bar">
+            <input type="text" placeholder="Type your message here..." id="userMessage">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+`;
+
         document.getElementById('avatarContainer').style.display = 'block';
     } else if (feature === 'reminder') {
         featureTitle.innerText = 'Reminder';
