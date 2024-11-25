@@ -1,51 +1,92 @@
-function showFeature(feature) {
-    const featureTitle = document.getElementById('featureTitle');
-    const featureDescription = document.getElementById('featureDescription');
+// Simulating real-time data fetching
+async function fetchDashboardData() {
+    try {
+        // Simulate a fetch request to your backend API
+        const response = await fetch('/api/dashboard'); // Replace with your API endpoint
+        if (!response.ok) throw new Error('Failed to fetch dashboard data.');
 
-    if (feature === 'manageUsers') {
-        featureTitle.innerText = 'Manage Users';
-        featureDescription.innerHTML = `
-            <div class="admin-section">
-                <p>View, edit, and delete user accounts.</p>
-                <button onclick="performTask('Add User')">Add User</button>
-                <button onclick="performTask('Edit User')">Edit User</button>
-                <button onclick="performTask('Delete User')">Delete User</button>
-            </div>
-        `;
-        
-    } else if (feature === 'viewReports') {
-        featureTitle.innerText = 'View Reports';
-        featureDescription.innerHTML = `
-            <div class="admin-section">
-                <p>Generate and view usage and system reports.</p>
-                <button onclick="performTask('Generate Report')">Generate Report</button>
-            </div>
-        `;
-    } else if (feature === 'manageContent') {
-        featureTitle.innerText = 'Manage Content';
-        featureDescription.innerHTML = `
-            <div class="admin-section">
-                <p>Add, edit, or remove content for the users.</p>
-                <button onclick="performTask('Add Content')">Add Content</button>
-                <button onclick="performTask('Edit Content')">Edit Content</button>
-                <button onclick="performTask('Delete Content')">Delete Content</button>
-            </div>
-        `;
-    } else if (feature === 'settings') {
-        featureTitle.innerText = 'Settings';
-        featureDescription.innerHTML = `
-            <div class="admin-section">
-                <p>Configure system and account settings.</p>
-                <button onclick="performTask('Change Password')">Change Password</button>
-                <button onclick="performTask('Update Preferences')">Update Preferences</button>
-            </div>
-        `;
-    } else {
-        featureTitle.innerText = 'Feature Coming Soon';
-        featureDescription.innerHTML = `<p>This feature is under development. Please check back later!</p>`;
+        const data = await response.json();
+
+        // Process and display data
+        updateDashboard(data);
+    } catch (error) {
+        console.error('Error fetching dashboard data:', error);
+        updateDashboard(null, error.message);
     }
 }
 
-function performTask(task) {
-    alert(`${task} task is selected.`);
+// Update Dashboard UI
+function updateDashboard(data, error = null) {
+    const featureDescription = document.getElementById('adminFeatureDescription');
+
+    if (error) {
+        featureDescription.innerHTML = `
+            <p><strong>Error:</strong> ${error}</p>
+            <p>Please check your internet connection or try again later.</p>`;
+        return;
+    }
+
+    featureDescription.innerHTML = `
+        <h3>Activity Summary</h3>
+        <ul>
+            <li><strong>Meals Completed:</strong> ${data.mealsCompleted || 0}</li>
+            <li><strong>Medicine Intake:</strong> ${data.medicineIntake || 0}</li>
+            <li><strong>Exercise Logged:</strong> ${data.exerciseLogged || 0} sessions</li>
+            <li><strong>Mood Trends:</strong> ${data.moodTrends || 'No data'}</li>
+        </ul>
+        <p>Last updated: ${new Date(data.lastUpdated).toLocaleString() || 'N/A'}</p>`;
+}
+
+// Handle the dashboard feature selection
+function showAdminFeature(feature) {
+    const featureTitle = document.getElementById('adminFeatureTitle');
+    const featureDescription = document.getElementById('adminFeatureDescription');
+
+    featureTitle.textContent = "Loading...";
+    featureDescription.textContent = "Please wait while the data is being fetched...";
+
+    if (feature === 'dashboard') {
+        featureTitle.textContent = "Dashboard";
+        fetchDashboardData(); // Fetch real-time data
+    } else {
+        // Other features (same as before)
+        const features = {
+            mealMedicine: {
+                title: "Meal & Medicine Management",
+                description: "Manage and track meal reminders and medicine schedules. Add or modify meal times and medicine details."
+            },
+            healthInsights: {
+                title: "Health Insights",
+                description: "View weekly and monthly reports on health patterns, including sleep, exercise, and mood."
+            },
+            notifications: {
+                title: "Notifications",
+                description: "Get alerts for missed activities or emergencies. Stay informed about your parent's well-being."
+            },
+            communicationHub: {
+                title: "Communication Hub",
+                description: "Send messages, interact with the avatar, or initiate video calls with your parent."
+            },
+            emergencyActions: {
+                title: "Emergency Actions",
+                description: "Monitor SOS alerts and take quick actions in case of emergencies."
+            },
+            communitySupport: {
+                title: "Community Support",
+                description: "Access resources, join support groups, and connect with other caregivers."
+            },
+            feedback: {
+                title: "Feedback & Suggestions",
+                description: "Provide feedback on the system or suggest new features to improve the experience."
+            }
+        };
+
+        if (features[feature]) {
+            featureTitle.textContent = features[feature].title;
+            featureDescription.innerHTML = `<p>${features[feature].description}</p>`;
+        } else {
+            featureTitle.textContent = "Feature Not Found";
+            featureDescription.innerHTML = `<p>The selected feature is currently unavailable.</p>`;
+        }
+    }
 }
