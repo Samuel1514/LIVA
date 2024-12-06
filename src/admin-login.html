@@ -63,8 +63,11 @@
                 .catch((error) => {
                     console.error('Google Login Failed:', error.message);
                 });
+            
         });
 
+
+        
         // Facebook Login
         const facebookProvider = new FacebookAuthProvider();
         document.querySelector('.facebook-button').addEventListener('click', (e) => {
