@@ -1,0 +1,16 @@
+const CHUNK_PUBLIC_PATH = "server/app/api/chat/route.js";
+const runtime = require("../../../chunks/[turbopack]_runtime.js");
+runtime.loadChunk("server/chunks/node_modules_next_ce1d49._.js");
+runtime.loadChunk("server/chunks/node_modules_@langchain_core_4087d3._.js");
+runtime.loadChunk("server/chunks/node_modules_langsmith_01bd34._.js");
+runtime.loadChunk("server/chunks/node_modules_zod_lib_index_mjs_a02341._.js");
+runtime.loadChunk("server/chunks/node_modules_@langchain_openai_e9ed45._.js");
+runtime.loadChunk("server/chunks/node_modules_openai_d5b54a._.js");
+runtime.loadChunk("server/chunks/node_modules_tr46_816df9._.js");
+runtime.loadChunk("server/chunks/node_modules_langchain_d69895._.js");
+runtime.loadChunk("server/chunks/node_modules_7a03a6._.js");
+runtime.loadChunk("server/chunks/[root of the server]__beca1e._.js");
+runtime.loadChunk("server/chunks/node_modules_2de657._.js");
+runtime.loadChunk("server/chunks/_1f457f._.js");
+runtime.getOrInstantiateRuntimeModule("[project]/.next-internal/server/app/api/chat/route/actions.js [app-rsc] (ecmascript)", CHUNK_PUBLIC_PATH);
+module.exports = runtime.getOrInstantiateRuntimeModule("[project]/node_modules/next/dist/esm/build/templates/app-route.js { INNER_APP_ROUTE => \"[project]/src/app/api/chat/route.tsx [app-route] (ecmascript)\" } [app-route] (ecmascript)", CHUNK_PUBLIC_PATH).exports;

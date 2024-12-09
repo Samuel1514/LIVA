@@ -1,5 +1,5 @@
 import Link from "next/link";
-import "./abou.css";
+import "./about.css";
 
 export default function AboutPage() {
   return (
